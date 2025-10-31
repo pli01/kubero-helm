@@ -1,0 +1,12 @@
+apiVersion: application.kubero.dev/v1alpha1
+kind: KuberoPrometheus
+metadata:
+  name: {{ include "application.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "application.name" . }}
+    helm.sh/chart: {{ include "application.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  {{- toYaml .Values.spec | nindent 2 }}

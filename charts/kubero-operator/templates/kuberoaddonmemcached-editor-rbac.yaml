@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "kubero-operator.fullname" . }}-kuberoaddonmemcached-editor-role
+  labels:
+  {{- include "kubero-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonmemcacheds
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonmemcacheds/status
+  verbs:
+  - get

@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "kubero-operator.fullname" . }}-kuberoaddonmysql-viewer-role
+  labels:
+  {{- include "kubero-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonmysqls
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonmysqls/status
+  verbs:
+  - get

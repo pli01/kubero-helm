@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "kubero-operator.fullname" . }}-kuberoaddonrabbitmq-admin-role
+  labels:
+  {{- include "kubero-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonrabbitmqs
+  verbs:
+  - '*'
+- apiGroups:
+  - application.kubero.dev
+  resources:
+  - kuberoaddonrabbitmqs/status
+  verbs:
+  - get
