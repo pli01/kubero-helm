@@ -1,0 +1,12 @@
+apiVersion: application.kubero.dev/v1alpha1
+kind: Kubero
+metadata:
+  name: {{ include "kubero.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "kubero.name" . }}
+    helm.sh/chart: {{ include "kubero.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  {{- toYaml .Values.spec | nindent 2 }}
