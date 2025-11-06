@@ -44,7 +44,14 @@ spec:
     storageClassName: standard
   replicaCount: 1
   resources: {}
-  securityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
   service:
     port: 2000
     type: ClusterIP
