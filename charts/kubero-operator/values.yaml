@@ -19,6 +19,13 @@ controllerManager:
       requests:
         cpu: 5m
         memory: 64Mi
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      runAsNonRoot: true
+      capabilities:
+        drop: ["ALL"]
+      seccompProfile:
+        type: RuntimeDefault
   manager:
     args:
     - --health-probe-bind-address=:8081
